@@ -5,9 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
-COPY ["Notes/Notes.csproj", "Notes/"]
-
-COPY . .
+COPY Notes Notes
 WORKDIR "/src/Notes"
 RUN dotnet build "Notes.csproj" -c Release -o /app/build -r linux-arm
 
