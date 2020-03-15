@@ -43,6 +43,8 @@ namespace Notes
 
             app.UseRouting();
 
+            app.UseStatusCodePages();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

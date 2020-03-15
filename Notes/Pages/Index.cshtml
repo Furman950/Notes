@@ -1,5 +1,10 @@
 ﻿@page
 @model IndexModel
+@using Microsoft.AspNetCore.Hosting
+@using System.IO
+@using System.Linq
+@inject IWebHostEnvironment env
+
 @{
     ViewData["Title"] = "Home page";
     Layout = "_Layout";
@@ -8,4 +13,24 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to my site</h1>
     <p>This is a where I put all the stuff that I have learn for a quick reference when I need it</p>
+
+    @{
+        var path = env.ContentRootPath + "/Pages";
+        <ul>
+            @foreach (var directory in Directory.GetDirectories(path))
+            {
+                var dirName = System.IO.Path.GetFileName(directory);
+                var dirNameToLower = dirName.ToLower();
+
+                if (!dirName.Equals("Shared"))
+                {
+                    <li>
+                        <a href="@dirNameToLower">@dirName</a>
+                    </li>
+                }
+
+            }
+        </ul>
+    }
+
 </div>

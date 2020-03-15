@@ -1,0 +1,12 @@
+﻿.tree-item.is-expanded > .material-icons.tree-expander-indicator {
+    transform: rotate(90deg);
+}
+
+.tree-expander-indicator {
+    transition: transform .15s ease-in-out,-webkit-transform .15s ease-in-out;
+}
+
+
+.tree-item.is-expanded ul {
+    display: list-item;
+}

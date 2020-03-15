@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Hosting
+@using System.IO
+@using System.Linq
+@inject IWebHostEnvironment env
+
+
+<div class="table-of-contents">
+    <div id="table-of-contents-holder" class="is-fixed has-not-scrolled is-flex">
+        <ul class="is-vertically-scrollable">
+            @{
+                var path = env.ContentRootPath + "/Pages";
+                @foreach (var directory in Directory.GetDirectories(path))
+                {
+                    var dirName = System.IO.Path.GetFileName(directory);
+                    var dirNameToLower = dirName.ToLower();
+                    var id = $"sub-{dirNameToLower}";
+
+                    if (!dirName.Equals("Shared"))
+                    {
+                        <li onclick="expand(this)" id="@dirNameToLower" class="tree-item">
+                            <i class="material-icons tree-expander-indicator">
+                                chevron_right
+                            </i>@dirName
+                            @*</a>*@
+
+                            <ul class="sub-list">
+
+                                @{
+                                    var files = Directory.GetFiles(directory)
+                                        .Select(x => System.IO.Path.GetFileNameWithoutExtension(x))
+                                        .OrderBy(x => x).ToList();
+                                }
+                                @foreach (var fileName in files)
+                                {
+                                    if (fileName.Equals("Index")) continue;
+                                    var fileNameToLower = fileName.ToLower();
+                                    var link = $"/{dirNameToLower}/{fileNameToLower}";
+                                    
+                                    <li>
+                                        <a href="@link">
+                                            @fileName
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
