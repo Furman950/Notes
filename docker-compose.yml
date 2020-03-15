@@ -9,7 +9,7 @@ services:
     container_name: notes
     restart: always
     volumes:
-        - /docker-volumes/NotesPages/Notes:/app/publish/Pages/
+        - /docker-volumes/NotesPages/Notes:/app/Pages/
     networks:
         - nginx_reverse_proxy
 
