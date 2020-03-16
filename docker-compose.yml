@@ -1,13 +1,15 @@
-version: '3.4'
+version: '3.7'
 services:
   notes:
     build:
         context: .
         dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+        - "5000:5000"
     container_name: notes
     restart: always
+    environment:
+        - ASPNETCORE_URLS=http://+:5000
     volumes:
         - /docker-volumes/NotesPages/Notes:/app/Pages/
     networks:

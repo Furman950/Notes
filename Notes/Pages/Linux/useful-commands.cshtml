@@ -1,0 +1,40 @@
+﻿@page
+@{
+    ViewData["Title"] = "Useful Commands";
+}
+
+@{var user = "fermin"; }
+
+<h2>Useful linux commands</h2>
+
+<div class="info-block">
+    <h4>Create a new user</h4>
+    <code>$ adduser @user</code>
+</div>
+
+<div class="info-block">
+    <h4>Add user to sudo group</h4>
+    <code>$ usermod -aG sudo @user</code>
+</div>
+
+<div class="info-block">
+    <h4>Delete user</h4>
+    <code>$ userdel @user</code>
+    <br />
+    <p>Then delete their home directory</p>
+    <code>userdel -r @user</code>
+
+
+</div>
+
+
+<div class="info-block">
+    <h3>List all users</h3>
+    <code>$ cat /etc/passwd</code>
+</div>
+
+
+<div class="info-block">
+    <h3>Only list user names</h3>
+    <code>$ awk -F':' '{ print $1 }' /etc/passwd</code>
+</div>
