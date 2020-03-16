@@ -35,7 +35,7 @@ namespace Notes
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
+                //app.UseHsts();
             }
 
             app.UseHttpsRedirection();
