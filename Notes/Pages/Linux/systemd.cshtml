@@ -1,0 +1,58 @@
+﻿@page
+@{
+    ViewData["Title"] = "systemd";
+}
+
+
+@{ var userName = "fermin";}
+
+<div class="info-block">
+    <h5>example-node.service file</h5>
+    <p>File location</p>
+    <code>/etc/systemd/system</code>
+    <br />
+
+    <code>
+        <pre>
+    [Unit]
+    Description=Node app to run script that builds docker image
+    After=network-online.target
+
+
+    [Service]
+    Restart=on-failure
+    WorkingDirectory=/opt/node/image-builder/
+    ExecStart=/usr/bin/node /opt/node/image-builder/index.js
+    User=@userName
+    Group=@userName
+
+
+    [Install]
+    WantedBy=multi-user.target
+    </pre>
+    </code>
+</div>
+
+
+<div class="info-block">
+    <h5>Start a service(.service extention is not required)</h5>
+    <code>$ systemctl start example-node.service</code>
+</div>
+
+<div class="info-block">
+    <h5>Stop a service(.service extention is not required)</h5>
+    <code>$ systemctl stop example-node.service</code>
+</div>
+
+<div class="info-block">
+    <h5>Restart a service(.service extention is not required)</h5>
+    <code>$ systemctl restart example-node.service</code>
+</div>
+
+<div class="info-block">
+    <h5>Reload after making changes to .service files</h5>
+    <p>You still need to restart your service before changes take effect</p>
+    <code>$ systemctl daemon-reload</code>
+</div>
+
+
