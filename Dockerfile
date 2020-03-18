@@ -13,4 +13,5 @@ RUN dotnet publish "Notes.csproj" -c Release -o /app/publish -r linux-arm
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /src/Notes/Pages .
 ENTRYPOINT ["dotnet", "Notes.dll"]
